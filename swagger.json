@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Sink API",
+    "title": "glsoft.ai API",
     "version": "1.0.0",
     "description": "URL shortening service API with analytics and real-time tracking"
   },
   "servers": [
     {
-      "url": "https://aiurl.tw"
+      "url": "https://glsoft.ai"
     }
   ],
   "paths": {
@@ -146,7 +146,7 @@
                     },
                     "shortLink": {
                       "type": "string",
-                      "example": "https://aiurl.tw/abc123"
+                      "example": "https://glsoft.ai/abc123"
                     }
                   }
                 }
