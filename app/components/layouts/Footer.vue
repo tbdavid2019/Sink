@@ -24,7 +24,7 @@ const { title, email, telegram, blog, twitter, mastodon, github } = useAppConfig
           sm:mt-0 sm:ml-4 sm:border-l sm:border-gray-200 sm:pl-4
         "
       >
-        &copy; {{ new Date().getFullYear() }} 資旅軟體開發有限公司
+        &copy; {{ new Date().getFullYear() }} {{ useAppConfig().company?.name || title }}
       </span>
       <span
         class="
