@@ -96,7 +96,7 @@ const getInitialUTMs = (urlStr) => {
       utm_term: q.utm_term || undefined,
       utm_content: q.utm_content || undefined,
     }
-  } catch(e) { return {} }
+  } catch { return {} }
 }
 
 const form = useForm({
@@ -122,7 +122,7 @@ watch(() => form.values.url, (newUrl) => {
     if (q.utm_campaign !== form.values.optional?.utm_campaign) form.setFieldValue('optional.utm_campaign', q.utm_campaign)
     if (q.utm_term !== form.values.optional?.utm_term) form.setFieldValue('optional.utm_term', q.utm_term)
     if (q.utm_content !== form.values.optional?.utm_content) form.setFieldValue('optional.utm_content', q.utm_content)
-  } catch (e) {}
+  } catch {}
 })
 
 watch(() => [
@@ -135,16 +135,36 @@ watch(() => [
   if (!form.values.url) return
   try {
     const urlObj = new URL(form.values.url)
-    if (source) urlObj.searchParams.set('utm_source', source.trim()); else urlObj.searchParams.delete('utm_source')
-    if (medium) urlObj.searchParams.set('utm_medium', medium.trim()); else urlObj.searchParams.delete('utm_medium')
-    if (campaign) urlObj.searchParams.set('utm_campaign', campaign.trim()); else urlObj.searchParams.delete('utm_campaign')
-    if (term) urlObj.searchParams.set('utm_term', term.trim()); else urlObj.searchParams.delete('utm_term')
-    if (content) urlObj.searchParams.set('utm_content', content.trim()); else urlObj.searchParams.delete('utm_content')
+    if (source) {
+      urlObj.searchParams.set('utm_source', source.trim())
+    } else {
+      urlObj.searchParams.delete('utm_source')
+    }
+    if (medium) {
+      urlObj.searchParams.set('utm_medium', medium.trim())
+    } else {
+      urlObj.searchParams.delete('utm_medium')
+    }
+    if (campaign) {
+      urlObj.searchParams.set('utm_campaign', campaign.trim())
+    } else {
+      urlObj.searchParams.delete('utm_campaign')
+    }
+    if (term) {
+      urlObj.searchParams.set('utm_term', term.trim())
+    } else {
+      urlObj.searchParams.delete('utm_term')
+    }
+    if (content) {
+      urlObj.searchParams.set('utm_content', content.trim())
+    } else {
+      urlObj.searchParams.delete('utm_content')
+    }
     const newUrlString = urlObj.toString()
     if (form.values.url !== newUrlString) {
       form.setFieldValue('url', newUrlString)
     }
-  } catch (e) {}
+  } catch {}
 }, { deep: true })
 
 function randomSlug() {
